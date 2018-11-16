@@ -1,13 +1,19 @@
 package com.glooko.views;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -41,6 +47,22 @@ public class BaseView {
 		return X;
 	}
 
+	public int getHeightOfScreen(MobileElement ele) {		
+		int height = ele.getSize().getHeight();
+		return height;
+	}
+	
+	public int getWidthOfScreen(MobileElement ele) {		
+		int width = ele.getSize().getWidth();
+		return width;
+	}
+	
+	public int getMiddleYCoordinate(MobileElement ele) {
+		int middleY = (int) (findYCoordinate(ele) + getHeightOfScreen(ele) * 1.5);
+		return middleY;
+	}
+	
+	
 	/**
 	 * Method to get Y Coordinate of Element.
 	 *
@@ -129,6 +151,15 @@ public class BaseView {
 				.perform();
 		// action.press(startElement).waitAction(Duration.ofSeconds(10)).moveTo(endElement).release().perform();
 	}
+	
+	
+	public void clickUsingJsExecutor(MobileElement ele) {
+		JavascriptExecutor  js=(JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();",ele);
+		
+	}
+	
+	
 
 	/**
 	 * Method to find endXCoordinate of Mobile Element.
@@ -269,10 +300,11 @@ public class BaseView {
 		action.tap(PointOption.point(X, Y)).release().perform();
 	}
 
-	public void press(MobileElement ele, int timeOutInSec) {
+	public void longPress (MobileElement ele, int timeOutInSec) {
 		final TouchAction action = new TouchAction(driver);
-		action.press(PointOption.point(findXCoordinate(ele),findYCoordinate(ele)))
-				.waitAction(WaitOptions.waitOptions(Duration.ofSeconds(timeOutInSec))).release().perform();
+		action.longPress(LongPressOptions.longPressOptions().
+				withPosition(PointOption.point(findXCoordinate(ele),findYCoordinate(ele))))
+				.release().perform();
 
 	}
 
@@ -300,4 +332,11 @@ public class BaseView {
 		wait.until(ExpectedConditions.visibilityOf(ele));
 	}
 
+	
+	public  void takeScreenshotAtEndOfTest() throws IOException {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String currentDir = System.getProperty("user.dir");
+		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+	}
+	
 }

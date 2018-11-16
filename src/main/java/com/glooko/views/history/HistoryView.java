@@ -124,9 +124,12 @@ public class HistoryView extends BaseView {
 	/**
 	 * Method to hide graph in History tab.
 	 */
-	public void hideGraph() {
+	public void hideGraph() {		
 		
-		press(hideGraph, 40);
+		Boolean isElementDisplayed=hideGraph.isDisplayed();
+		System.out.println(isElementDisplayed);
+		tap(722,1329);
+	
 	}
 
 	/**

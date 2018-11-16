@@ -32,7 +32,7 @@ public class HistoryTest extends BaseTest {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		loginview.loginToGlooko(ReadExcelData.list.get(0), ReadExcelData.list.get(1));
+		loginview.loginToGlooko(ReadExcelData.validValueslist.get(0), ReadExcelData.validValueslist.get(1));
 		try {
 			historyview.clickHistoryTab();
 		} catch (final InvalidFormatException e) {
@@ -45,7 +45,7 @@ public class HistoryTest extends BaseTest {
 		// historyview.findAllLoggedEventsText();
 	}
 
-	//@Test
+	@Test
 	public void hideGraphInHistoryView() {
 		try {
 			historyview.clickHistoryTab();

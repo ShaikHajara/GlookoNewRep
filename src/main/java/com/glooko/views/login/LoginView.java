@@ -12,13 +12,13 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class LoginView extends BaseView {
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@index='1']")
-	MobileElement email;
+	public MobileElement email;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@index='3']")
-	MobileElement password;
+	public MobileElement password;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'LOG')]")
-	MobileElement loginBtn;
+	public MobileElement loginBtn;
 
 	public LoginView(AppiumDriver<MobileElement> driver) {
 		super(driver);
@@ -44,4 +44,6 @@ public class LoginView extends BaseView {
 		log.info("Click on Login button in login screen");
 		loginBtn.click();
 	}
+	
+	
 }

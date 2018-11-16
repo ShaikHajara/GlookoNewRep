@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [All]">
+  <listeners>
+    <listener class-name="com.glooko.reports.ReportGenerator"/>
+  </listeners>
+  <test thread-count="5" name="All tests(failed)">
+    <classes>
+      <class name="com.glooko.tests.login.LoginTest">
+        <methods>
+          <include name="stopServer"/>
+          <include name="init"/>
+          <include name="logintest"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.glooko.tests.login.LoginTest -->
+    </classes>
+  </test> <!-- All tests(failed) -->
+</suite> <!-- Failed suite [All] -->

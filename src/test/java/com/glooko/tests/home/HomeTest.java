@@ -56,6 +56,6 @@ public class HomeTest extends BaseTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		loginview.loginToGlooko(ReadExcelData.list.get(0), ReadExcelData.list.get(1));
+		loginview.loginToGlooko(ReadExcelData.validValueslist.get(0), ReadExcelData.validValueslist.get(1));
 	}
 }
