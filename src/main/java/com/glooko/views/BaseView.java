@@ -49,6 +49,7 @@ public class BaseView {
 
 	public int getHeightOfScreen(MobileElement ele) {		
 		int height = ele.getSize().getHeight();
+		System.out.println(height);
 		return height;
 	}
 	
