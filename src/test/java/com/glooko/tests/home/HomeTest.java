@@ -20,8 +20,6 @@ public class HomeTest extends BaseTest {
 	@Test
 	public void addEvents() {
 		waitForSeconds(10);
-		System.out.print("message");
-		System.out.print("message");
 		homeview.addMultipleEvents();
 		homeview.logout();
 	}
